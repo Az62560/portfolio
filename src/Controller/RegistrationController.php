@@ -24,8 +24,6 @@ class RegistrationController extends AbstractController
     #[Route('/registration', name: 'app_registration')]
     public function index(Request $request, UserPasswordHasherInterface $encoder): Response
     {
-        $notification = null;
-
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
 
@@ -48,18 +46,11 @@ class RegistrationController extends AbstractController
 
                 //envoi dans la bdd
                 $this->entityManager->flush();
-            }
-
-        } else {
-
-            $notification = 'Votre adresse mail est déjà connu, vous ne pouvez pas recréer un compte.';
-            
+            }     
         }
 
         return $this->render('registration/index.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
-
         ]);
     }
 }

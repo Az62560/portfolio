@@ -4,6 +4,21 @@
     font-family: "Nunito Sans", sans-serif;
 }
 
+.gradient-title {
+    /* Définir le dégradé comme fond */
+    background: linear-gradient(135deg, #6e07b8, #ffffff);
+    
+    /* Utiliser background-clip pour appliquer le dégradé au texte */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Pour que le texte soit visible, définissez la couleur du texte sur transparent */
+    color: transparent;
+
+    /* Assurez-vous que le titre occupe suffisamment d'espace pour le dégradé */
+    font-size: 3rem; /* Vous pouvez ajuster la taille selon vos besoins */
+}
+
 #sidebar {
     background-color: rgb(34, 34, 34);
     position: sticky;
@@ -30,7 +45,7 @@ li {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    font-size: xx-large;
+    font-size: x-large;
     margin: 10rem 1rem 1rem 10rem;
     color: rgb(230, 230, 230);
 }
@@ -38,4 +53,8 @@ li {
 .visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.form {
+    color: rgb(230, 230, 230);
 }

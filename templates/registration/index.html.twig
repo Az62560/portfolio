@@ -7,15 +7,8 @@
 	<div class="col-md-5">
 		<div class="card rounded-4" style="background-color:black;">
 			<h3 class="text-center mt-3">Inscription</h3>
-			{% if notification %}
-				<div class="alert text-center">{{ notification }}</div>
-			{% endif %}
 			<div class="card-body">
 				{{form(form)}}
-			</div>
-				<p class="text-center">Déjà un compte ?<br>
-					<a href="{{path('app_login')}}" style="color:black;">Connexion</a>
-				</p>
 			</div>
 		</div>
     </div>
