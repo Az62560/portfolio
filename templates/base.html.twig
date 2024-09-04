@@ -34,7 +34,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="#" class="nav-link link-light link-opacity-75-hover">
+        <a href="{{path('app_home') }}" class="nav-link link-light link-opacity-75-hover">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#about_me"/></svg>
           A propos de moi
         </a>
@@ -54,7 +54,8 @@
     </ul>
     <hr>
     <footer>
-    <a href="#" class="nav-link link-light link-opacity-75-hover">All right reserved Justin Cornu</a>
+    <a href="{{ path('app_registration') }}" class="nav-link link-light link-opacity-75-hover">Inscription</a>
+    <a href="{{ path('app_login') }}" class="nav-link link-light link-opacity-75-hover">All right reserved Justin Cornu</a>
     </footer>
   </div>
   <main class="col-10 p-4">
