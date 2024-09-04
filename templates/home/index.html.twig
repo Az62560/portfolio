@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">Justin CORNU</h1>
+    <section class="hidden">Bonjour et bienvenu dans mon portfolio.<br><br>
+    Je suis Justin, développeur web et web mobile.<br>
+    Si vous êtes ici c'est pour venir découvrir mon travail, <br>
+    pour me contacter ou tout simplement en apprendre plus sur moi.<br>
+    <img src="{{ asset('asset/img/profilPicture2.jpg') }}" class="rounded-4 mt-5" style="height:30rem;widht:30rem;"/>
+    </section>
+    <section class="hidden">Un autre texte ici...</section>
+    <section class="hidden">Encore un autre texte ici...</section>
+{% endblock %}
+
+{% block script %}
+<script src="script.js"></script>
+{% endblock %}
