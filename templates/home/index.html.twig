@@ -3,34 +3,48 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5" style="background: linear-gradient(135deg, #6e07b8, #ffffff);-webkit-background-clip: text;
-    background-clip: text;color: transparent;">
-        Justin CORNU
-    </h1>
-    <section class="hidden" id="about_me">Bonjour et bienvenu dans mon portfolio.<br><br>
+    <h1 style="text-align: center;
+    margin-top: 5rem;
+    background: linear-gradient(135deg, #6e07b8, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size:7rem;">Justin CORNU</h1>
+    <div id="about_me"></div>
+    <section class="hidden" >
+        Bonjour et bienvenu dans mon portfolio.<br><br>
         Je suis Justin, développeur web et web mobile.<br>
         Si vous êtes ici c'est pour venir découvrir mon travail, <br>
         pour me contacter ou tout simplement en apprendre plus sur moi.<br>
         <img src="{{ asset('asset/img/profilPicture2.jpg') }}" class="rounded-4 my-5" style="height:30rem;"/>
     </section>
 
-    <section class="hidden">Envie d'une création de site web ?<br><br>
-    Ne cherchez plus, vous êtes au bon endroit !<br>
+    <section class="hidden">
+        Envie d'une création de site web ?<br><br>
+        Ne cherchez plus, vous êtes au bon endroit !<br>
     </section>
-
-    <section class="hidden" id="projects">
-        <h3 class="text-center my-5">Retrouvez ici tout les projets durant ma carrière de dev !</h3>
+    <div id="projects"></div>
+    <section class="hidden mx-5" >
+        <h3 class="text-center my-5">Retrouvez ici tout mes projets</h3>
+        <div class="ms-5 row rox-cols">
+				{% for projects in projects %}	
+						<div class="pb-5">
+							<div class="card shadow rounded-4">
+								<a href="{{ path('app_project', {'slug' : projects.slug}) }}">
+                                <h4 class="text-center my-5">{{projects.name}}</h4>
+									<img src="/uploads/images/{{ projects.illustration }}" class="card-img rounded-4 custom-img" alt="image de la card">
+                                </a>                               
+							</div>
+						</div>
+				{% endfor %}
+			</div>
     </section>
-
-    <section class="hidden form mx-5" id="contact">
+    <div id="contact"></div>
+    <section class="hidden form mx-5">
         <h3 style="color:white;" class="text-center my-5">
-            Discutons ensemble de votre projet ou de notre futur collaboration
+            Discutons ensemble
         </h3>
         {{ form(contactForm)}}
     </section>
 
-{% endblock %}
-
-{% block script %}
-<script src="script.js"></script>
 {% endblock %}

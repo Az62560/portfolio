@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,28 @@ class Project
 
     #[ORM\Column]
     private ?bool $visible = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    /**
+     * @var Collection<int, ImgProject>
+     */
+    #[ORM\OneToMany(targetEntity: ImgProject::class, mappedBy: 'project')]
+    private Collection $imgProjects;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $linkUrl = null;
+
+    public function __construct()
+    {
+        $this->imgProjects = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +99,60 @@ class Project
     public function setVisible(bool $visible): static
     {
         $this->visible = $visible;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImgProject>
+     */
+    public function getImgProjects(): Collection
+    {
+        return $this->imgProjects;
+    }
+
+    public function addImgProject(ImgProject $imgProject): static
+    {
+        if (!$this->imgProjects->contains($imgProject)) {
+            $this->imgProjects->add($imgProject);
+            $imgProject->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImgProject(ImgProject $imgProject): static
+    {
+        if ($this->imgProjects->removeElement($imgProject)) {
+            // set the owning side to null (unless already changed)
+            if ($imgProject->getProject() === $this) {
+                $imgProject->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLinkUrl(): ?string
+    {
+        return $this->linkUrl;
+    }
+
+    public function setLinkUrl(?string $linkUrl): static
+    {
+        $this->linkUrl = $linkUrl;
 
         return $this;
     }

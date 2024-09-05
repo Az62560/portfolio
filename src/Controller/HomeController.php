@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Project;
 use App\Form\ContactType;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -46,8 +47,11 @@ class HomeController extends AbstractController
             $this->input($contact);
         }
 
+        $projects = $this->entityManager->getRepository(Project::class)->findByVisible('visible');
+
         return $this->render('home/index.html.twig', [
             'contactForm' => $contactForm->createView(),
+            'projects' => $projects,
         ]);
     }
 }

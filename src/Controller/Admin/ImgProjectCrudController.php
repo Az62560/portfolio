@@ -2,39 +2,33 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Project;
-use Doctrine\DBAL\Types\BooleanType;
+use App\Entity\ImgProject;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ProjectCrudController extends AbstractCrudController
+class ImgProjectCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Project::class;
+        return ImgProject::class;
     }
 
     
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom'),
-            SlugField::new('slug')
-                ->setTargetFieldName('name'),
-            ImageField::new('illustration', 'Image')
+            TextField::new('title', 'Titre de l\'image'),
+            ImageField::new('image', 'Gallerie d\'images')
                 ->setBasePath('uploads/images')
                 ->setUploadDir('public/uploads/images')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
-            TextEditorField::new('description', 'Description'),
-            TextField::new('linkUrl', 'Lien du projet'),
-            BooleanField::new('visible', 'Afficher'),
+            AssociationField::new('project', 'Projet associé')
         ];
-            }
-
+    }
+    
 }

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block body %}
+    <section class="project-detail mx-5">
+    <h3 class="text-center my-5">{{ project.name }}</h3>
+    <p>{{ project.description | raw }}</p>
+  
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#projectImagesModal">
+        Voir les images du projet
+    </button>
+    
+    <a type="button" class="btn" href="{{ project.linkUrl }}" target="_blank" rel="noopener noreferrer">
+            Aller vers {{ project.linkUrl }}  
+    </a>
+
+    <div class="modal fade" id="projectImagesModal" tabindex="-1" aria-labelledby="projectImagesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="projectImagesModalLabel">{{ project.name }} - Galerie</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            {% for image in imgProject %}
+                            <div class="col-md-6 mb-3">
+                                <p class="text-center" style="color:black;">{{ image.title }}</p>
+                                <img src="{{ asset('uploads/images/' ~ image) }}" class="img-fluid rounded shadow" alt="{{ project.name }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

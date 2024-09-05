@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
+use App\Entity\ImgProject;
 use App\Entity\Project;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -30,6 +31,7 @@ class DashboardController extends AbstractDashboardController
     {
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Mes projets', 'fas fa-list', Project::class);
+        yield MenuItem::linkToCrud('Gallerie projet', 'fa-regular fa-images', ImgProject::class);
         yield MenuItem::linkToCrud('Messages', 'fa fa-message', Contact::class);
 
         yield MenuItem::linkToUrl('Revenir au portfolio', 'fa fa-arrow-left', '/');

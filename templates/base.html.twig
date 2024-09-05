@@ -28,33 +28,39 @@
     <div class="d-flex">
     <div id="sidebar" class="col-2 d-flex flex-column flex-shrink-0 p-3">
     <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img src="asset/img/code.png" class="bi pe-none me-2 ms-3" width="40" height="32"></img>
+      <a href="{{ path('app_home') }}"><img src="{{ asset('asset/img/code.png') }}" class="bi pe-none me-2 ms-3" width="40" height="32"></img></a>
       <span class="fs-4 p-4 text-light">Just'1 Dev</span>
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="#about_me" class="nav-link link-light link-opacity-75-hover">
+        <a href="{{ path('app_home') }}#about_me" class="nav-link link-light link-opacity-75-hover">
           <svg class="bi pe-none me-2" width="16" height="16"></svg>
           A propos de moi
         </a>
       </li>
       <li>
-        <a href="#projects" class="nav-link link-light link-opacity-75-hover">
+        <a href="{{ path('app_home') }}#projects" class="nav-link link-light link-opacity-75-hover">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#projects"/></svg>
           Mes projets
         </a>
       </li>
       <li>
-        <a href="#contact" class="nav-link link-light link-opacity-75-hover">
+        <a href="{{ path('app_home') }}#contact" class="nav-link link-light link-opacity-75-hover">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#contact"/></svg>
           Discutons ensemble
+        </a>
+      </li>
+      <li>
+        <a href="{{ asset('uploads/cv/CV_Justin.pdf') }}" download="CV_Justin.pdf" class="nav-link link-light link-opacity-75-hover">
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#contact"/></svg>
+          Télécharger mon CV
         </a>
       </li>
     </ul>
     <hr>
     <footer>
-      <a href="{{ path('app_login') }}" class="nav-link link-light link-opacity-75-hover">All right reserved Justin Cornu</a>
+      <a href="{{ path('app_login') }}" class="nav-link link-light link-opacity-75-hover">All rights reserved Justin Cornu</a>
     </footer>
   </div>
   <main class="col-10 p-4">
@@ -62,5 +68,4 @@
   </main>
   </div>
     </body>
-    {% block script %}{% endblock %}
 </html>
