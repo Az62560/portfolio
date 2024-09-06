@@ -30,10 +30,14 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Mes projets', 'fas fa-list', Project::class);
-        yield MenuItem::linkToCrud('Galerie par projet', 'fa-regular fa-images', ImgProject::class);
+        yield MenuItem::section('Messagerie');
         yield MenuItem::linkToCrud('Messages', 'fa fa-message', Contact::class);
 
+        yield MenuItem::section('Création de projet');
+        yield MenuItem::linkToCrud('Mes projets', 'fas fa-list', Project::class);
+        yield MenuItem::linkToCrud('Galerie par projet', 'fa-regular fa-images', ImgProject::class);
+        
+        yield MenuItem::section('');
         yield MenuItem::linkToUrl('Revenir au portfolio', 'fa fa-arrow-left', '/');
     }
 }

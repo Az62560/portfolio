@@ -10,12 +10,25 @@
     top: 0;
     height: 100vh;
     overflow-y: auto;
-}
 
-footer {
+    .footer-link {
+        text-decoration: none; 
+        color: inherit;
+        cursor: default;
+      }
+    
+    .footer-link:hover {
+    text-decoration: none;
+    color: inherit;
+    }
+    
+    footer {
     color: white;
     text-align: center;
 }
+}
+
+
 
 p {
     color:white;
@@ -46,6 +59,7 @@ li {
 
 .form {
     color: rgb(230, 230, 230);
+    margin-left: 20rem;
 }
 
 .btn {
@@ -72,4 +86,6 @@ li {
     object-fit: cover;
     width: 100%;
 }
+
+
 
