@@ -1,7 +1,31 @@
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     font-family: "Nunito Sans", sans-serif;
+}
+
+#container {
+    display: flex;
+}
+
+/* Réafficher la sidebar lorsque ouverte */
+#sidebar.open {
+    transform: translateX(0);
+}
+
+/* Bouton de toggle styles */
+#sidebar-toggle {
+    display: none; /* Par défaut caché pour les grands écrans */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 #sidebar {
@@ -10,32 +34,31 @@
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+}
 
-    .footer-link {
-        text-decoration: none; 
-        color: inherit;
-        cursor: default;
-      }
-    
-    .footer-link:hover {
+.footer-link {
     text-decoration: none;
     color: inherit;
-    }
-    
-    footer {
+    cursor: default;
+}
+
+.footer-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer {
     color: white;
     text-align: center;
-}
-}
-
-
-
-p {
-    color:white;
 }
 
 li {
     margin-top: 2rem;
+}
+
+p {
+    color: white;
 }
 
 .hidden {
@@ -57,9 +80,13 @@ li {
     color: rgb(230, 230, 230);
 }
 
-.form {
+.form-container {
+    display: flex;
+    flex-direction: column;
     color: rgb(230, 230, 230);
-    margin-left: 20rem;
+    margin: 0 20rem 0 20rem;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .btn {
@@ -69,8 +96,8 @@ li {
 }
 
 .modal-content {
-    background-color: #212529; /* Gris foncé */
-    color: #fff; /* Blanc */
+    background-color: #212529;
+    color: #fff;
 }
 
 .custom-card {
@@ -87,5 +114,44 @@ li {
     width: 100%;
 }
 
+@media (max-width: 1450px) {
+    li {
+        font-size:small;
+    }
+}
+
+@media (max-width:1250px) {
+    .form-container {
+        margin: 0 5rem 0 5rem; 
+    }
+}
+
+@media (max-width: 1120px) {
+    li {
+        font-size: xx-small;
+    }
+}
+
+@media (max-width: 980px) {
+    #sidebar {
+        transform: translateX(-250px); /* Cacher la sidebar */
+        position: fixed; /* Garder la sidebar fixe pour la réafficher */
+    }
+
+    /* Afficher le bouton de la sidebar */
+    #sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        background-color: rgb(34, 34, 34);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}
 
 
