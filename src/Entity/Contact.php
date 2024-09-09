@@ -35,6 +35,9 @@ class Contact
     #[ORM\Column]
     private ?bool $readOrNot = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $subject = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Contact
     public function setReadOrNot(bool $readOrNot): static
     {
         $this->readOrNot = $readOrNot;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): static
+    {
+        $this->subject = $subject;
 
         return $this;
     }

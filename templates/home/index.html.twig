@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-
+    
         <section class="hidden text-center">
             Envie d'une création de site web ?<br><br>
             Que ce soit un site vitrine, un site e-commerce ou une solution métier,<br>
@@ -80,6 +80,13 @@
             <h3 style="color:white;" class="text-center my-5">
                 Me contacter
             </h3>
+            {% if formSubmitted %}
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-success mt-4 rounded-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
             {{ form(contactForm)}}
         </section>
 
