@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Entity\Project;
 use App\Form\ContactType;
+use App\Service\Mailjet;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,10 +17,12 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     private $entityManager;
+    private $mailjet;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, Mailjet $mailjet)
     {
         $this->entityManager = $entityManager;
+        $this->mailjet = $mailjet;
     }
 
     private function input(Contact $contact): void
@@ -51,6 +54,15 @@ class HomeController extends AbstractController
 
             // Indiquer que le formulaire a été soumis avec succès
             $formSubmitted = true;
+
+            // Récupérer les données du formulaire
+            $fromEmail = $contact->getEmail();
+            $fromName = $contact->getFirstname() . ' ' . $contact->getLastname();
+            $subject = $contact->getSubject();
+            $content = $contact->getMessage();
+            
+            // Envoyer l'email via Mailjet
+            $this->mailjet->sendEmail($fromEmail, $fromName, $subject, $content);
 
             // Rediriger pour éviter le rechargement du formulaire
             return $this->redirectToRoute('app_home');
