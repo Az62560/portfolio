@@ -80,13 +80,11 @@
             <h3 style="color:white;" class="text-center my-5">
                 Me contacter
             </h3>
-            {% if formSubmitted %}
-                {% for message in app.flashes('notice') %}
-                    <div class="alert alert-success mt-4 rounded-4">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+            {% for message in app.flashes('notice') %}
+            <div class="alert alert-success mt-4 rounded-4">
+                {{ message }}
+            </div>
+        {% endfor %}
             {{ form(contactForm)}}
         </section>
     {% endblock %}

@@ -46,14 +46,9 @@ class HomeController extends AbstractController
 
         $contactForm->handleRequest($request);
 
-        $formSubmitted = false;
-
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             // Passez l'objet Contact directement à la méthode input
             $this->input($contact);
-
-            // Indiquer que le formulaire a été soumis avec succès
-            $formSubmitted = true;
 
             // Récupérer les données du formulaire
             $fromEmail = $contact->getEmail();
@@ -64,14 +59,15 @@ class HomeController extends AbstractController
             // Envoyer l'email via Mailjet
             $this->mailjet->sendEmail($fromEmail, $fromName, $subject, $content);
 
+            // Rediriger pour recharger la page et éviter la resoumission
+            return $this->redirectToRoute('app_home');
         }
 
         $projects = $this->entityManager->getRepository(Project::class)->findByVisible('visible');
 
         return $this->render('home/index.html.twig', [
             'contactForm' => $contactForm->createView(),
-            'projects' => $projects,
-            'formSubmitted' => $formSubmitted
+            'projects' => $projects
         ]);
     }
 }
