@@ -1,8 +1,8 @@
-    {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-    {% block title %}Mon portfolio ! - Justin CORNU{% endblock %}
+{% block title %}Mon portfolio ! - Justin CORNU{% endblock %}
 
-    {% block body %}
+{% block body %}
         <h1 style="text-align: center;
         margin-top: 5rem;
         background: linear-gradient(135deg, #6e07b8, #ffffff);
@@ -80,11 +80,24 @@
             <h3 style="color:white;" class="text-center my-5">
                 Me contacter
             </h3>
-            {% for message in app.flashes('notice') %}
+            {% for message in app.flashes('success') %}
             <div class="alert alert-success mt-4 rounded-4">
                 {{ message }}
             </div>
-        {% endfor %}
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="alert alert-danger mt-4 rounded-4">
+                {{ message }}
+            </div>
+            {% endfor %}
             {{ form(contactForm)}}
         </section>
-    {% endblock %}
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			document.getElementById('{{ form.honeypot.vars.id }}').value = '';
+		});
+	</script>
+{% endblock %}

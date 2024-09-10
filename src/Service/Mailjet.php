@@ -8,18 +8,19 @@ use Mailjet\Resources;
 class Mailjet
 {
 
-    private $api_key = 'e9825437f180fbfab2a630eab2a20485';
-    private $api_key_secret = '660e697bb5567e7a7791ddea9475bc01';
-
-    private $mailjet;
+    private $apiKey;
+    private $apiSecret;
 
     public function __construct()
     {
-        $this->mailjet = new Client($this->api_key, $this->api_key_secret, true,['version' => 'v3.1']);
+        $this->apiKey = $_ENV['MAILJET_API_KEY'];
+        $this->apiSecret = $_ENV['MAILJET_API_SECRET'];
     }
 
     public function sendEmail($fromEmail, $fromName, $subject, $content)
     {
+        $mailjet = new Client($this->apiKey, $this->apiSecret, true,['version' => 'v3.1']);
+
         $contentHtml = nl2br($content);
 
         $body = [
@@ -35,7 +36,7 @@ class Mailjet
                             'Name'  => "Justin Cornu",
                         ]
                     ],
-                    'TemplateID' => 5641547,
+                    'TemplateID' => 6277862,
                         'TemplateLanguage' => true,
                         'Subject' => $subject,
                         'Variables' => [
@@ -45,7 +46,7 @@ class Mailjet
             ]
         ];
 
-        $response = $this->mailjet->post(Resources::$Email, ['body' => $body]);
+        $response = $mailjet->post(Resources::$Email, ['body' => $body]);
         $response->success();
     }
 }

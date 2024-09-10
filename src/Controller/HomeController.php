@@ -35,7 +35,7 @@ class HomeController extends AbstractController
         $this->entityManager->flush();
 
         // Ajoutez un message flash
-        $this->addFlash('notice', "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.");
+        $this->addFlash('success', "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.");
     }
 
     #[Route('/', name: 'app_home')]
@@ -47,6 +47,16 @@ class HomeController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+
+            // Vérification du champ honeypot
+            $honeypot = $contactForm->get('honeypot')->getData();
+
+            if (!empty($honeypot)) {
+
+                // Considérer comme spam et rediriger ou afficher un message
+                $this->addFlash('error', 'Votre message a été détecté comme du spam.');
+
+            } else {
             // Passez l'objet Contact directement à la méthode input
             $this->input($contact);
 
@@ -61,6 +71,7 @@ class HomeController extends AbstractController
 
             // Rediriger pour recharger la page et éviter la resoumission
             return $this->redirectToRoute('app_home');
+            }
         }
 
         $projects = $this->entityManager->getRepository(Project::class)->findByVisible('visible');
