@@ -25,12 +25,11 @@
             {% endblock %}
         </head>
         <body>
-        <button id="sidebar-toggle">☰</button>
         <div class="d-flex">
-        <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 pt-5">
-        <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <div id="sidebar" class="d-flex flex-column p-3 pt-5">
+        <div id="logo" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <a href="{{ path('app_home') }}"><img src="{{ asset('asset/img/code.png') }}" class="bi pe-none me-2 ms-3" width="40" height="32"></img></a>
-          <span class="fs-4 p-4 text-light">Just'1 Dev</span>
+          <span class="fs-4 p-4 text-light" id="logo">Just'1 Dev</span>
         </div>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
@@ -53,8 +52,8 @@
             </a>
           </li>
         </ul>
-        <div class="d-flex justify-content-around pb-5">
-          <a href="https://github.com/Az62560" target="_blank" rel="noopener noreferrer"><img src="{{ asset('asset/img/white-github.png') }}" style="height:3rem;"/></a>
+        <div id="href" class="d-flex justify-content-around pb-5">
+          <a href="https://github.com/Az62560" target="_blank" rel="noopener noreferrer" id="git"><img src="{{ asset('asset/img/white-github.png') }}" style="height:3rem;"/></a>
           <a href="https://linkedin.com/in/justin-cornu-446075298" target="_blank" rel="noopener noreferrer"><img src="{{ asset('asset/img/white-linkedin.png') }}" style="height:3rem;"/></a>
         </div>
         <hr>
@@ -67,16 +66,4 @@
       </main>
       </div>
         </body>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const sidebar = document.getElementById('sidebar');
-
-        // Ajoute un gestionnaire de clic sur le bouton
-        sidebarToggle.addEventListener('click', function () {
-            // Bascule la classe "open" sur la sidebar
-            sidebar.classList.toggle('open');
-        });
-    });
-</script>
     </html>

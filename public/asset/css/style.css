@@ -6,35 +6,15 @@
 
 #container {
     display: flex;
-}
-
-/* Réafficher la sidebar lorsque ouverte */
-#sidebar.open {
-    transform: translateX(0);
-}
-
-/* Bouton de toggle styles */
-#sidebar-toggle {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1001;
-    background-color: rgb(34, 34, 34);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
+    margin-left: 250px;
 }
 
 #sidebar {
     background-color: rgb(34, 34, 34);
     position: sticky;
     top: 0;
+    left: 0;
     height: 100vh;
-    overflow-y: auto;
-    transition: transform 0.3s ease-in-out;
 }
 
 .footer-link {
@@ -118,6 +98,10 @@ p {
     li {
         font-size:small;
     }
+
+    #logo {
+        flex-direction: column;
+    }
 }
 
 @media (max-width:1250px) {
@@ -132,18 +116,24 @@ p {
     }
 }
 
+@media (max-width: 1020px) {
+    #logo {
+        font-size: medium !important;
+    }
+
+    #href {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #git {
+        margin-bottom: 2rem;
+    }
+}
+
 @media (max-width: 980px) {
     #sidebar {
-        transform: translateX(-100%);
-        width: 250px;
-    }
-
-    #sidebar.collapsed {
-        transform: translateX(0);
-    }
-
-    #sidebar-toggle {
-        display: block;
+        width: 200px;
     }
 }
 
