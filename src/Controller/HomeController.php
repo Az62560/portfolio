@@ -64,11 +64,7 @@ class HomeController extends AbstractController
             // Envoyer l'email via Mailjet
             $this->mailjet->sendEmail($fromEmail, $fromName, $subject, $content);
 
-            // Rediriger pour éviter le rechargement du formulaire
-            return $this->redirectToRoute('app_home');
         }
-
-        $this->addFlash('notice', "Merci de m'avoir contacté. Je vous répondrai dans les plus brefs délais.");
 
         $projects = $this->entityManager->getRepository(Project::class)->findByVisible('visible');
 
